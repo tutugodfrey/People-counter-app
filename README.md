@@ -200,3 +200,28 @@ CAMERA_FEED_SERVER: "http://localhost:3004"
 ...
 MQTT_SERVER: "ws://localhost:3002"
 ```
+
+## Obtian model and convert to IR
+
+[Link to tensorflow ssd_mobilenet_v2_coco_2018_03_29 model](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz)
+
+**To download to your current working directory run command below**
+`wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz`
+
+**Untar the model with the command below**
+
+`tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar`
+
+**Set path to the model optimizer to your environment**
+
+`export MOD_PATH=/opt/intel/openvino/deployment_tools/model_optimizer`
+
+**Source the OpenVINO toolkit environemnt**
+
+`source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5`
+
+**Run the model through the model optimizer to obtain the IR model**
+
+```
+python3 $MOD_PATH/mo.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config $MOD_PATH/extensions/front/tf/ssd_v2_support.json
+```

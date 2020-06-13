@@ -26,6 +26,7 @@ Based on the report below, it is evident that model size is much smaller for the
 **Note:** The size of the models reported below are base on the size of the saved_model folder for Tensorflow pre converted and the combination of the size of frozen_infernece_graph.xml and frozen_inference_graph.bin for the post converted IR model.
 I really tried a different models as per the accuracy of the detections but the converted IT model seen to perform better that the original tensor flow model in the number of correct detections they where able to make.
 
+
 ### Statistic of model performance
 
 **Accuracy**
@@ -52,6 +53,7 @@ I really tried a different models as per the accuracy of the detections but the 
 
 
 **Cloud vs Edge Deployment**
+
 There are several reasons while edge deployment will perform prefer to deployment to the cloud. First is considering network latency. Depending on the speed of the internet, serving an inference request over the internet will introduce some delay before users get feedback. I experience this first hand because my internet is quite slow. I could notice that it took some time before the statistics of the inference are logged on the UI when I was running using the integrated workspace as opposed to running the request on my local machine. Also, deployment to the cloud will attract  the running cost of cloud services such as storage, virtual machine, network etc. In view of network need and cost, the choice of where to deploy the application will also be based on how far reaching the application will serve. For example, an individual user who wants to monitor movement around his house may settle for edge deployment compared to a large organization with branches in different locations. They organization may be able to settle for cloud deployment because they are able to care for the running cost of cloud deployment. But this is just another factor. The latency requirement still plays a great part in determining whether to go for edge deployment or cloud.
 
 
