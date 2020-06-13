@@ -26,21 +26,21 @@ Based on the report below, it is evident that model size is much smaller for the
 **Note:** The size of the models reported below are base on the size of the saved_model folder for Tensorflow pre converted and the combination of the size of frozen_infernece_graph.xml and frozen_inference_graph.bin for the post converted IR model.
 I really tried a different models as per the accuracy of the detections but the converted IT model seen to perform better that the original tensor flow model in the number of correct detections they where able to make.
 
+
 ### Statistic of model performance
 
 **Accuracy**
 
+| models               |  otal frames process | Total frames with persons  | Total frame detected | Difference                |
 |----------------------|----------------------|----------------------------|----------------------|---------------------------|
-| models               | Total frames process | Total frames with persons  | Total frame detected | Difference                |
- -----------------------------------------------------------------------------------------------------------------------------
 | Pretrained Tf model  | 1394                 | 1026                       | 866                  | 0.8440545808966862        |
 | IR conversion        | 1394                 | 1053                       | 1002                 | 0.9515669515669516        |
 
+
 **Overall Differences**
 
+|  TEST                | Pretrained Tf                    | IR Conversion                          | Difference                        |
 |----------------------|----------------------------------|----------------------------------------|-----------------------------------|
-| TEST                 | Pretrained Tf                    | IR Conversion                          | Difference                        |
- --------------------------------------------------------------------------------------------------------------------------------------
 | Size                 | 70 MB                            | 34 Mb                                  | 40 Mb                             |
 | Model Load Time 1    | 7.74632716178894                 | 0.7389791011810303                     | 7.007348060607869                 |
 | Model Load Time 2    | 7.623437166213989                | 0.739727258682251                      | 6.883709907531738                 |
@@ -50,6 +50,11 @@ I really tried a different models as per the accuracy of the detections but the 
 | Inference Time 2     | 0.08153144974619621              | 0.0003949169449005784                  | 0.08113653280129562               |
 | Inference Time 3     | 0.08056854996482816              | 0.00039121068190981016                 | 0.08017733928291836               |
 | Inference Time 4     | 0.08311539075980057              | 0.0003797400801561484                  | 0.08273565067964442               |
+
+
+**Cloud vs Edge Deployment**
+
+There are several reasons while edge deployment will perform prefer to deployment to the cloud. First is considering network latency. Depending on the speed of the internet, serving an inference request over the internet will introduce some delay before users get feedback. I experience this first hand because my internet is quite slow. I could notice that it took some time before the statistics of the inference are logged on the UI when I was running using the integrated workspace as opposed to running the request on my local machine. Also, deployment to the cloud will attract  the running cost of cloud services such as storage, virtual machine, network etc. In view of network need and cost, the choice of where to deploy the application will also be based on how far reaching the application will serve. For example, an individual user who wants to monitor movement around his house may settle for edge deployment compared to a large organization with branches in different locations. They organization may be able to settle for cloud deployment because they are able to care for the running cost of cloud deployment. But this is just another factor. The latency requirement still plays a great part in determining whether to go for edge deployment or cloud.
 
 
 ## Assess Model Use Cases
