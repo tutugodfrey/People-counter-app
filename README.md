@@ -210,7 +210,7 @@ MQTT_SERVER: "ws://localhost:3002"
 
 **Untar the model with the command below**
 
-`tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar`
+`tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz`
 
 **Set path to the model optimizer to your environment**
 
